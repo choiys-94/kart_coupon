@@ -116,4 +116,4 @@ def create_account():
     return "계정 생성이 완료되었습니다."
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True, port=8877)
+    app.run(host="0.0.0.0", debug=False, port=8877)
