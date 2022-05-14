@@ -95,5 +95,25 @@ def submit_coupon():
 
     return "1"
 
+@app.route("/api/create_account", methods=["POST"])
+def create_account():
+    username = request.form["username"]
+    userid = request.form["userid"]
+    password = request.form["password"]
+    if password != "2468":
+        return "패스워드가 일치하지 않습니다."
+    
+    users = []
+    with open("users.json", "r", encoding="utf-8") as f:
+        data = f.read()
+        users = json.loads(data)
+        users.append({"username": username, "userid": userid})
+    
+    with open("users.json", "w", encoding="utf-8") as f:
+        data = json.dumps(users, ensure_ascii=False)
+        f.write(data)
+    
+    return "계정 생성이 완료되었습니다."
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=8877)
